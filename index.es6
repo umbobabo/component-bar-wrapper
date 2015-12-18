@@ -4,6 +4,7 @@ import Icon from '@economist/component-icon';
 export default class BarWrapper extends React.Component {
   static propTypes = {
     className: React.PropTypes.string,
+    classNamePrefix: React.PropTypes.string,
     children: React.PropTypes.node,
     close: React.PropTypes.bool,
     onClose: React.PropTypes.func,
@@ -24,7 +25,7 @@ export default class BarWrapper extends React.Component {
     this.setState({ closed: true });
   }
   render() {
-    const { className, children, close, onClose } = this.props;
+    const { className, classNamePrefix, children, close, onClose } = this.props;
 
     let classNames = [ 'bar-wrapper' ];
     let closedClassNames = [ 'bar-wrapper--closed' ];
@@ -34,10 +35,10 @@ export default class BarWrapper extends React.Component {
 
     if (className) {
       classNames = classNames.concat([ className ]);
-      closedClassNames = closedClassNames.concat([ `${className}--closed` ]);
-      containerClassNames = containerClassNames.concat([ `${className}--container` ]);
-      closeClassNames = closeClassNames.concat([ `${className}--close` ]);
-      closeWrapperClassNames = closeWrapperClassNames.concat([ `${className}--close-wrapper` ]);
+      closedClassNames = closedClassNames.concat([ `${classNamePrefix}--closed` ]);
+      containerClassNames = containerClassNames.concat([ `${classNamePrefix}--container` ]);
+      closeClassNames = closeClassNames.concat([ `${classNamePrefix}--close` ]);
+      closeWrapperClassNames = closeWrapperClassNames.concat([ `${classNamePrefix}--close-wrapper` ]);
     }
 
     if (this.state && this.state.closed) {
